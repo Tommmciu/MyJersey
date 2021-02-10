@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MyJersey.Service.Interfaces;
 
 namespace MyJersey.GUI
 {
@@ -20,9 +21,14 @@ namespace MyJersey.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly IJerseyService _jerseyService;
+
+        public MainWindow( IJerseyService jerseyService)
         {
+            _jerseyService = jerseyService;
             InitializeComponent();
+            Label.Content = _jerseyService.GetAll().First().Name;
         }
+
     }
 }
