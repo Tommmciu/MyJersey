@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MyJersey.Entities;
 
 namespace MyJersey.Database
 {
-    public class MyJerseyDbContext : DbContext
+    public sealed class MyJerseyDbContext : DbContext
     {
         public MyJerseyDbContext(DbContextOptions<MyJerseyDbContext> options):base(options)
         {
@@ -16,12 +15,9 @@ namespace MyJersey.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Jersey>().HasData(
-                new Jersey[]
-                {
-                    new Jersey("/messi"){Id=1}
-                }
-
-            );
+                new Jersey { Id = 1, Name = "Messi" },
+                new Jersey { Id = 2, Name = "Lewy" }
+                );
         }
     }
 }

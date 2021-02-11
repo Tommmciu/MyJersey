@@ -27,7 +27,7 @@ namespace MyJersey.GUI
         {
             _jerseyService = jerseyService;
             InitializeComponent();
-            Label.Content = _jerseyService.GetAll().First().Name;
+            //Label.Content = _jerseyService.GetAll().First().Name;
         }
 
     }

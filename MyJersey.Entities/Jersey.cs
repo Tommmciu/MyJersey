@@ -1,15 +1,9 @@
-﻿namespace MyJersey.Entities
+﻿using System.Collections.Generic;
+
+namespace MyJersey.Entities
 {
     public class Jersey : BaseRecord
     {
-        public Jersey()
-        {
-            
-        }
-
-        public Jersey(string name)
-        {
-            Name = name;
-        }
+public virtual List<Photo> Photos { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace MyJersey.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MyJersey.Entities
 {
     public class BaseRecord
     {

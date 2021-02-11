@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyJersey.GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="350" MinHeight="330"  Width="330" MinWidth="160"       
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <Label x:Name="Label"></Label>
+        <StackPanel>
+            <materialDesign:Card Padding="32" Margin="16">
+                <StackPanel>
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline4TextBlock}">My Jersey</TextBlock>
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">Football jersey collection app</TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
+            <UniformGrid>
+                <Button x:Name="Jerseys" Margin="5,5" >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon  Kind="TShirtCrewOutline"/>
+                        <TextBlock  Text=" Jerseys "/>
+                        <materialDesign:PackIcon  Kind="TShirtCrewOutline"/>
+                    </StackPanel></Button>
+                <Button Margin="5,5"  Content="2" />
+                <Button Margin="5,5"  Content="3" />
+                <Button Margin="5,5"  Content="4" />
+            </UniformGrid>
+            <Button Margin="5,5"  Content="Exit" />
+
+        </StackPanel>
     </Grid>
 </Window>
