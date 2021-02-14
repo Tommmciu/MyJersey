@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using MyJersey.GUI.Pages;
 using MyJersey.Service.Interfaces;
 
 namespace MyJersey.GUI
@@ -21,14 +10,24 @@ namespace MyJersey.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IJerseyService _jerseyService;
+        private readonly JerseyList _jerseyList;
+        private readonly TeamList _teamList;
 
-        public MainWindow( IJerseyService jerseyService)
+        public MainWindow(JerseyList jerseyList, TeamList teamList)
         {
-            _jerseyService = jerseyService;
+            _jerseyList = jerseyList;
+            _teamList = teamList;
             InitializeComponent();
-            //Label.Content = _jerseyService.GetAll().First().Name;
         }
 
+        private void JerseyPanel_OnChecked(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(_jerseyList);
+        }
+
+        private void TeamPanel_OnChecked(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(_teamList);
+        }
     }
 }

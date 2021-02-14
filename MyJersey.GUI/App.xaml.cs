@@ -8,6 +8,7 @@ using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MyJersey.Database;
+using MyJersey.GUI.Pages;
 using MyJersey.Service.Implementation;
 using MyJersey.Service.Interfaces;
 
@@ -29,7 +30,10 @@ namespace MyJersey.GUI
         {
             services.AddDbContext<MyJerseyDbContext>(options=> options.UseSqlServer(ConfigurationManager.ConnectionStrings["MyJerseyDb"].ConnectionString));
             services.AddSingleton<IJerseyService,JerseyService>();
+
             services.AddSingleton<MainWindow>();
+            services.AddSingleton<JerseyList>();
+            services.AddSingleton<TeamList>();
         }
         private void OnStartup(object sender, StartupEventArgs e)
         {
