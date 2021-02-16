@@ -17,27 +17,34 @@ namespace MyJersey.Service.Implementation
         }
         public int Add(T entity)
         {
-            return _context.Add(entity).Entity.Id;
+            _context.Add(entity);
+            _context.SaveChanges();
+            return entity.Id;
         }
 
         public void Edit(T entity)
         {
             _context.Update(entity);
+            _context.SaveChanges();
         }
 
         public int Delete(T entity)
         {
-            return _context.Remove(entity).Entity.Id;
+            _context.Remove(entity);
+            _context.SaveChanges();
+            return entity.Id;
         }
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity= _context.Set<T>().FirstOrDefault(x => x.Id == id);
+            if (entity is null) throw new ArgumentException($"Can not find entity with id: {id}.", nameof(id));
+             return Delete(entity);
         }
 
         public T Get(int id)
         {
-            return _context.Set<T>().First(x => x.Id == id);
+            return _context.Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<T> GetAll()

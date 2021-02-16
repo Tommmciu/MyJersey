@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MyJersey.Entities;
+using MyJersey.GUI.ViewModels;
+using MyJersey.Service.Interfaces;
 
 namespace MyJersey.GUI.Pages
 {
     /// <summary>
     /// Interaction logic for JerseyList.xaml
     /// </summary>
-    public partial class JerseyList : Page
+    public partial class JerseyListPage : Page
     {
-        public JerseyList()
+        public JerseyListPage(IJerseyService jerseyService)
         {
             InitializeComponent();
+            var jerseys = jerseyService.GetView().ToList();
+            var viewModel =new ObservableCollection<JerseyViewModel>() ;
+            jerseys.ForEach(jersey => viewModel.Add(new JerseyViewModel(jersey)));
+            JerseyList.ItemsSource = jerseys;
         }
     }
 }

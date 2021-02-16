@@ -19,25 +19,26 @@ namespace MyJersey.GUI
     /// </summary>
     public partial class App : Application
     {
-        private readonly ServiceProvider serviceProvider;
+        private readonly ServiceProvider _serviceProvider;
         public App()
         {
             ServiceCollection services = new ServiceCollection();
             ConfigureServices(services);
-            serviceProvider = services.BuildServiceProvider();
+            _serviceProvider = services.BuildServiceProvider();
         }
         private void ConfigureServices(ServiceCollection services)
         {
-            services.AddDbContext<MyJerseyDbContext>(options=> options.UseSqlServer(ConfigurationManager.ConnectionStrings["MyJerseyDb"].ConnectionString));
+            services.AddDbContext<MyJerseyDbContext>(options =>
+                options.UseSqlServer(ConfigurationManager.ConnectionStrings["MyJerseyDb"].ConnectionString));
             services.AddSingleton<IJerseyService,JerseyService>();
 
             services.AddSingleton<MainWindow>();
-            services.AddSingleton<JerseyList>();
+            services.AddSingleton<JerseyListPage>();
             services.AddSingleton<TeamList>();
         }
         private void OnStartup(object sender, StartupEventArgs e)
         {
-            var mainWindow = serviceProvider.GetService<MainWindow>();
+            var mainWindow = _serviceProvider.GetService<MainWindow>();
             mainWindow.Show();
         }
     }

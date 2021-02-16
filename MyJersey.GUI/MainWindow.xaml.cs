@@ -10,10 +10,10 @@ namespace MyJersey.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly JerseyList _jerseyList;
+        private readonly JerseyListPage _jerseyList;
         private readonly TeamList _teamList;
 
-        public MainWindow(JerseyList jerseyList, TeamList teamList)
+        public MainWindow(JerseyListPage jerseyList, TeamList teamList)
         {
             _jerseyList = jerseyList;
             _teamList = teamList;
